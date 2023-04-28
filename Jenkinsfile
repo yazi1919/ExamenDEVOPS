@@ -1,25 +1,63 @@
-node {
-    def mvnHome
-    stage('Preparation') { // for display purposes
-        // Get some code from a GitHub repository
-        git 'https://github.com/yazi1919/ExamenDEVOPS.git'
-        // Get the Maven tool.
-        // ** NOTE: This 'M3' Maven tool must be configured
-        // **       in the global configuration.
-        mvnHome = tool 'M2_HOME'
-    }
-    stage('Build') {
-        // Run the maven build
-        withEnv(["MVN_HOME=$mvnHome"]) {
-            if (isUnix()) {
-                sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
-            } else {
-                bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+pipeline {
+
+
+    agent any
+
+
+    stages {
+
+        stage("Cloning Project"){
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/yazi1919/ExamenDEVOPS.git'
+                echo 'checkout stage'
             }
         }
+
+        stage ('Maven Clean'){
+            steps
+			{
+                sh 'mvn clean'
+            }
+        }
+
+		stage ('Maven Compile'){
+            steps
+			{
+                sh 'mvn compile'
+            }
+        }
+
+        stage ('Maven Test'){
+            steps
+			{
+                sh 'mvn test'
+            }
+        }
+
+		stage('Maven Build'){
+            steps
+			{
+                sh 'mvn package'
+            }
+        }
+
+		stage ('Maven Install'){
+            steps
+			{
+                sh 'mvn install'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'docker run myapp mvn test'
+            }
+            post {
+                always {
+                junit 'target/surefire-reports/*.xml'
+                }
+            }
     }
-    stage('Results') {
-        junit '**/target/surefire-reports/TEST-*.xml'
-        archiveArtifacts 'target/*.jar'
     }
 }
