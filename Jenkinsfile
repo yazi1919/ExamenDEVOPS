@@ -14,18 +14,39 @@ pipeline {
             }
         }
 
-	    
-	    stage('SonarQube analysis') {
-      steps {
-        // Configure SonarQube server details
-        withSonarQubeEnv('SonarQube Server') {
-          // Run SonarQube analysis
-          sh 'mvn sonar:sonar'
+        stage ('Maven Clean'){
+            steps
+			{
+                sh 'mvn clean'
+            }
         }
-      }
-    }
-      
 
-		
+		stage ('Maven Compile'){
+            steps
+			{
+                sh 'mvn compile'
+            }
+        }
+
+        stage ('Maven Test'){
+            steps
+			{
+                sh 'mvn test'
+            }
+        }
+
+		stage('Maven Build'){
+            steps
+			{
+                sh 'mvn package'
+            }
+        }
+
+		stage ('Maven Install'){
+            steps
+			{
+                sh 'mvn install'
+            }
+        }
     }
 }
