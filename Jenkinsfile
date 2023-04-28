@@ -20,7 +20,16 @@ pipeline {
         }
 	    
 	    
-	
+	 environment {
+        JAVA_HOME = "/usr/bin/java"
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+    }
 	    
 	    
 	    
