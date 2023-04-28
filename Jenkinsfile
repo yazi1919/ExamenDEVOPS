@@ -1,2 +1,25 @@
-
-pipeline {    agent any    stages {       stage('Clone repository') {          steps {             git 'https://github.com/yazi1919/ExamenDEVOPS.git'          }       }       stage('Run tests') {          steps {             sh 'ant runTests -Dtest.dir=test'          }       }       stage('Publish test results') {          steps {             junit 'test/TEST-results.xml'          }       }    } }
+node {
+    def mvnHome
+    stage('Preparation') { // for display purposes
+        // Get some code from a GitHub repository
+        git 'https://github.com/yazi1919/ExamenDEVOPS.git'
+        // Get the Maven tool.
+        // ** NOTE: This 'M3' Maven tool must be configured
+        // **       in the global configuration.
+        mvnHome = tool 'M2_HOME'
+    }
+    stage('Build') {
+        // Run the maven build
+        withEnv(["MVN_HOME=$mvnHome"]) {
+            if (isUnix()) {
+                sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+            } else {
+                bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+            }
+        }
+    }
+    stage('Results') {
+        junit '**/target/surefire-reports/TEST-*.xml'
+        archiveArtifacts 'target/*.jar'
+    }
+}
