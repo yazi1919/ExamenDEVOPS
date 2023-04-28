@@ -15,7 +15,7 @@ pipeline {
                 git branch: 'main',
                 url: 'https://github.com/yazi1919/ExamenDEVOPS.git'
                 echo 'checkout stage'
-		     mvnHome = tool 'M2_HOME'
+		 
             }
         }
 	    
