@@ -83,11 +83,11 @@ pipeline {
                 }
 	    
 	    
-//stage('SonarQube') {
-           // steps {
-		  //  dir('Exam'){     sh 'mvn sonar:sonar -Dsonar.login=tokentoken -Dsonar.password=squ_6cfff00a7eebd04b3daeb453aabb8e74efe9dfe7'          }
-       //     }
-   //     }
+stage('SonarQube') {
+            steps {
+		    dir('Exam'){     sh 'mvn sonar:sonar -Dsonar.login=tokentoken -Dsonar.password=squ_6cfff00a7eebd04b3daeb453aabb8e74efe9dfe7'          }
+            }
+        }
   
  
 	    
