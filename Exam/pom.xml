@@ -17,10 +17,10 @@
 		<java.version>1.8</java.version>
 		
 		<sonar.host.url>http://192.168.122.10:9000</sonar.host.url>
-                <sonar.login>jenkinstoken</sonar.login>
+                <sonar.login>tokentoken</sonar.login>
                 <sonar.password>
 
-                                squ_8d054538ac63986a3482e49dc5e01834e40ebd9c            </sonar.password>
+                                squ_6cfff00a7eebd04b3daeb453aabb8e74efe9dfe7            </sonar.password>
 		
 	</properties>
 	<dependencies>
