@@ -4,15 +4,9 @@ pipeline {
     agent any
 	
 	    
-	 environment {
-        JAVA_HOME = "/usr/bin/java"
-    }
-	
- tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "M2_HOME"
-    }
 
+	
+ 
     stages {
 
         stage("Cloning Project"){
