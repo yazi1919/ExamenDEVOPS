@@ -26,7 +26,7 @@ import java.text.ParseException;
 import org.springframework.scheduling.annotation.Scheduled;
 
 @Service
-@SpringBootTest
+
 public class TrainServiceImpl implements ITrainService {
 
 
@@ -65,7 +65,7 @@ public class TrainServiceImpl implements ITrainService {
         return cpt / occ;
     }
 
-    @Test
+    
     public List<Train> ListerTrainsIndirects(Ville nomGareDepart, Ville nomGareArrivee) {
 
         List<Train> lestrainsRes = new ArrayList<>();
