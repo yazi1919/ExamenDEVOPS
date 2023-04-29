@@ -75,7 +75,11 @@ pipeline {
                 }
 	    
 	    
-
+stage('SonarQube') {
+            steps {
+		    dir('Exam'){     sh 'mvn sonar:sonar'}
+            }
+        }
   
  
 	    
