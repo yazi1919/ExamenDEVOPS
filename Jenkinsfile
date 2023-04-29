@@ -52,6 +52,14 @@ pipeline {
 			{
 				dir('Exam'){ sh 'mvn test'}
             }
+		
+		 post {
+        always {
+          junit 'target/surefire-reports/*.xml'
+        }
+			 
+      }
+		
         }
 
 		stage('Maven Build'){
