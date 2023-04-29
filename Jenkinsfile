@@ -26,12 +26,7 @@ pipeline {
 	    
 	
  
-        stage('Build') {
-            steps {
-		    dir('Exam'){ sh 'mvn clean install'}
-            }
-        }
-
+   
 	    
 	    
 	    
