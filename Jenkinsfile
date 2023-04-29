@@ -83,5 +83,29 @@ stage('SonarQube') {
   
  
 	    
+	    stage('Nexus') {
+            steps {
+                junit 'target/surefire-reports/*.xml'
+                nexusArtifactUploader(
+                    nexusVersion: 'nexus3',
+                    protocol: 'http',
+                    nexusUrl: 'http://<nexus-hostname>:8081/',
+                    groupId: 'com.example',
+                    version: '1.0-SNAPSHOT',
+                    repository: 'maven-releases',
+                    credentialsId: 'nexus-credentials',
+                    artifacts: [
+                        [artifactId: 'example', classifier: 'sources', file: 'target/example-1.0-SNAPSHOT-sources.jar', type: 'jar'],
+                        [artifactId: 'example', classifier: 'javadoc', file: 'target/example-1.0-SNAPSHOT-javadoc.jar', type: 'jar'],
+                        [artifactId: 'example', file: 'target/example-1.0-SNAPSHOT.jar', type: 'jar']
+                    ]
+                )
+            }
+        }
+	    
+	    
+	    
+	    
+	    
     }
 }
