@@ -28,7 +28,7 @@ pipeline {
  
         stage('Build') {
             steps {
-                sh 'mvn clean install'
+		    dir('Exam'){ sh 'mvn clean install'}
             }
         }
 
@@ -47,35 +47,35 @@ pipeline {
         stage ('Maven Clean'){
             steps
 			{
-                sh 'sudo mvn clean'
+				dir('Exam'){   sh 'sudo mvn clean'}
             }
         }
 
 		stage ('Maven Compile'){
             steps
 			{
-                sh 'mvn compile'
+				dir('Exam') {sh 'mvn compile'}
             }
         }
 
         stage ('Maven Test'){
             steps
 			{
-                sh 'mvn test'
+				dir('Exam'){ sh 'mvn test'}
             }
         }
 
 		stage('Maven Build'){
             steps
 			{
-                sh 'mvn package'
+				dir('Exam') { sh 'mvn package'}
             }
         }
 
 		stage ('Maven Install'){
             steps
 			{
-                sh 'mvn install'
+				dir('Exam'){ sh 'mvn install'}
             }
         }
 	    
