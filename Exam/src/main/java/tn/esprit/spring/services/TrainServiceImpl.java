@@ -26,6 +26,7 @@ import java.text.ParseException;
 import org.springframework.scheduling.annotation.Scheduled;
 
 @Service
+@SpringBootTest
 public class TrainServiceImpl implements ITrainService {
 
 
