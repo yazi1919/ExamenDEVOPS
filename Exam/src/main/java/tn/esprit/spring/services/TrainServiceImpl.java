@@ -64,7 +64,7 @@ public class TrainServiceImpl implements ITrainService {
         return cpt / occ;
     }
 
-
+    @Test
     public List<Train> ListerTrainsIndirects(Ville nomGareDepart, Ville nomGareArrivee) {
 
         List<Train> lestrainsRes = new ArrayList<>();
