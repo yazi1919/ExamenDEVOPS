@@ -97,7 +97,7 @@ stage('SonarQube') {
                 nexusArtifactUploader(
                     nexusVersion: 'nexus3',
                     protocol: 'http',
-                    nexusUrl: 'http://<nexus-hostname>:8081/',
+                    nexusUrl: 'http://192.168.122.10:8081/',
                     groupId: 'com.example',
                     version: '1.0-SNAPSHOT',
                     repository: 'maven-releases',
