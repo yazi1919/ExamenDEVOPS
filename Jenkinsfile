@@ -77,7 +77,7 @@ pipeline {
 	    
 stage('SonarQube') {
             steps {
-		    dir('Exam'){     sh 'mvn sonar:sonar'}
+		    dir('Exam'){     sh 'mvn sonar:sonar -Dsonar.login=jenkinstoken -Dsonar.password=squ_8d054538ac63986a3482e49dc5e01834e40ebd9c'          }
             }
         }
   
