@@ -42,7 +42,7 @@ pipeline {
         stage ('Maven Clean'){
             steps
 			{
-				dir('Exam'){   sh 'sudo mvn clean'}
+				dir('Exam'){   sh 'mvn clean'}
             }
         }
 
